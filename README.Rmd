@@ -1,0 +1,51 @@
+---
+output: github_document
+---
+
+<!-- README.md is generated from README.Rmd. Please edit that file -->
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>",
+  fig.path = "man/figures/README-",
+  out.width = "100%"
+)
+```
+
+# geefirth
+
+<!-- badges: start -->
+<!-- badges: end -->
+
+The goal of geefirth is to fit Generalized Estimating Equation (GEE) for  correlated binary data with separation or near-to-separation
+
+## Installation
+
+You can install the development version of geefirth like so:
+
+``` r
+devtools::install_github("momenulhaque/geefirth") # it will install the package
+
+```
+
+## Example
+
+This is a basic example which shows you how to solve a common problem:
+
+```{r example}
+library(geefirth)
+## basic example code
+
+data(geefirth)
+# Fitting GEE for quasi-separated data
+
+geefirth(y ~ x + obstime, id=quasiDat$id, data=quasiDat, corstr = "exchangeable")
+
+# Fitting GEE for near to quasi-separated data
+
+geefirth(y ~ x + obstime, id=nearDat$id, data=nearDat, corstr = "exchangeable")
+
+
+```
+
