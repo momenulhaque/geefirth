@@ -26,14 +26,11 @@ library(geefirth)
 ## basic example code
 
 data(geefirth)
-#> Warning in data(geefirth): data set 'geefirth' not found
+
 # Fitting GEE for quasi-separated data
 
 geefirth(y ~ x + obstime, id=quasiDat$id, data=quasiDat, corstr = "exchangeable")
-#> Warning in model.matrix.default(Terms, m, contrasts): non-list contrasts
-#> argument ignored
-#> Warning in model.matrix.default(Terms, m, contrasts): non-list contrasts
-#> argument ignored
+
 #> $call
 #> geefirth(formula = y ~ x + obstime, id = quasiDat$id, data = quasiDat, 
 #>     corstr = "exchangeable")
@@ -57,11 +54,7 @@ geefirth(y ~ x + obstime, id=quasiDat$id, data=quasiDat, corstr = "exchangeable"
 # Fitting GEE for near to quasi-separated data
 
 geefirth(y ~ x + obstime, id=nearDat$id, data=nearDat, corstr = "exchangeable")
-#> Warning in model.matrix.default(Terms, m, contrasts): non-list contrasts
-#> argument ignored
 
-#> Warning in model.matrix.default(Terms, m, contrasts): non-list contrasts
-#> argument ignored
 #> $call
 #> geefirth(formula = y ~ x + obstime, id = nearDat$id, data = nearDat, 
 #>     corstr = "exchangeable")
