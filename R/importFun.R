@@ -1,4 +1,4 @@
-#' @importFrom stats contrasts model.extract model.matrix pf toeplitz
+#' @importFrom stats contrasts model.extract model.matrix pf toeplitz model.matrix.default
 #'
 #' @export
 

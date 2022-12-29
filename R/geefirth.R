@@ -1,21 +1,26 @@
-#' @title  Fitting Firth-type GEE for  correlated binary data with separation or near-to-separation
+#' @title Fitting GEE for correlated binary data with separation or near-to-separation
 #'
 #' @description geefirth fits GEE with Firth-type penalization to provide
-#' bias-corrected finite  estimate of the regression coefficient  in case of separation or near-to-separation. In addition,
-#' it provides bias-corrected sandwich estimate of the standard error of the penalized GEE estimate.
+#' bias-corrected finite  estimate of the regression coefficient  in case of separation or
+#' near-to-separation. In addition, it provides bias-corrected sandwich estimate of the
+#' standard error of the penalized GEE estimate.
 #'
-#' @param formula Similar as geeglm
+#' @param formula Similar as glm
 #'
 #'
-#' @param id cluster variable and requirs to be sorted
+#' @param id cluster id and needs to be sorted
 #'
 #' @param data a data frame or tibble
 #'
 #' @param corstr working correlation structure, "independence" (default), "ar1", "unstr", "exchangeable".
 #'
 #' @return a list of estimates
-#' @author Momenul Haque Mondol \email{mmondol@isrt.ac.bd}
 #'
+#' @author Momenul Haque Mondol \email{mmondol@isrt.ac.bd} Muhammad Ehsanul Karim \email{ehsan.karim@ubc.ca}
+#'
+#' @references
+#'
+#' Mondol MH, Rahman MS. Bias-reduced and separation-proof GEE with small or sparse longitudinal binary data. Statistics in Medicine. 2019 Feb 22;38(14):2544-60.
 #'
 #'
 #' @examples
@@ -24,16 +29,16 @@
 #'
 #' # Fitting GEE for quasi-separated data
 #'
-#' geefirth(y ~ x + obstime, id=quasiDat$id, data=quasiDat, corstr = "exchangeable");
+#' geefirth(y ~ x + obstime, id=id, data=quasiDat, corstr = "exchangeable");
 #'
 #' # Fitting GEE for near to quasi-separated data
 #'
-#' geefirth(y ~ x + obstime, id=nearDat$id, data=nearDat, corstr = "exchangeable");
+#' geefirth(y ~ x + obstime, id=id, data=nearDat, corstr = "exchangeable");
 #'
 #' @export
 
 
-geefirth <- function(formula, id = id, data, corstr="independence"){
+geefirth <- function(formula, id = id, data = parent.frame(), corstr="independence"){
   call <- match.call()
   m <- match.call(expand.dots = FALSE)
   m$R <- m$b <- m$tol <- m$maxiter <- m$link <- m$varfun <-
@@ -47,9 +52,9 @@ geefirth <- function(formula, id = id, data, corstr="independence"){
   m[[1]] <- as.name("model.frame")
   m <- eval(m, parent.frame())
   Terms <- attr(m, "terms")
-  y <- as.matrix(model.extract(m, "response"))
-  x <- model.matrix(Terms, m, contrasts)
-  xx <- model.matrix(Terms, m, contrasts)
+  y <- suppressWarnings(as.matrix(model.extract(m, "response")))
+  x <- suppressWarnings(model.matrix.default(Terms, m, contrasts))
+  xx <- suppressWarnings(model.matrix.default(Terms, m, contrasts))
   xx <- as.data.frame(xx)
   id <- model.extract(m, id)
   if (dim(y)[2]==2) {
@@ -310,7 +315,6 @@ geefirth <- function(formula, id = id, data, corstr="independence"){
   attr(fit, "class") <- c("gee")
   fit$call <- call
   fit$formula <- as.vector(attr(Terms, "formula"))
-  fit$contrasts <- attr(x, "contrasts")
   fit$coefficients <- est.swM
   fit$correlation <- R[dimen==max(dimen)][[1]]
   fit
