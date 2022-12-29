@@ -75,3 +75,7 @@ geefirth(y ~ x + obstime, id=nearDat$id, data=nearDat, corstr = "exchangeable")
 #> attr(,"class")
 #> [1] "gee"
 ```
+
+
+Cite this R package:
+[![DOI](https://zenodo.org/badge/579810216.svg)](https://zenodo.org/badge/latestdoi/579810216)
