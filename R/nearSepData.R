@@ -1,15 +1,11 @@
-#' Respiratory illness data
+#' Respiratory illness data: A random subset  of 15 patients
 #'
-#' A clinical trial of 111 patients with respiratory illness from
-#' two different clinics were randomized to receive either a placebo or an active treatment and
-#' then were examined at baseline and consecutive four visits.
-#' At each examination, respiratory status was determined. More details on
-#' the dataset can be found in the book of Fitzmaurice et al. (2012).
+#' This is a random subset is drawn from clinic 2 (seed 124). Other variables are similar as `respData`.
 #'
 #'
 #'
-#' @format ## `respData`
-#' A data frame with 555 rows and 5 columns:
+#' @format ## `nearSepData`
+#' A data frame with 75 rows and 5 columns:
 #' \describe{
 #'   \item{id}{patient id}
 #'   \item{illness}{disease status good = 1 or poor = 0}
@@ -27,4 +23,4 @@
 #'
 #'
 #'
-"respData"
+"nearSepData"

@@ -38,6 +38,7 @@ library(geefirth)
 ## basic example code
 
 data(geefirth)
+
 # Fitting GEE for quasi-separated data
 
 geefirth(y ~ x + obstime, id=quasiDat$id, data=quasiDat, corstr = "exchangeable")
