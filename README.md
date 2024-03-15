@@ -1,7 +1,7 @@
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
 
-# geefirth
+# geefirth: An R package to estimate the treatment effect from longitudinal binary data with separation or near-to-separation
 
 <!-- badges: start -->
 <!-- badges: end -->
